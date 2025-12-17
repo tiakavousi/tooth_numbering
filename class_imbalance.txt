@@ -1,0 +1,124 @@
+TOOTH LABEL CLASS DISTRIBUTION
+Generated: 16 December 2025
+Dataset: DenPAR Tooth Labels (Corrected & Redistributed)
+==============================================================================
+
+DATASET SUMMARY:
+- Training Images:   616  [+128 from Testing redistribution]
+- Testing Images:    0    [Empty - awaiting external dataset]
+- Validation Images: 136  [+14 from Testing redistribution]
+- Total Images:      752
+
+- Training Instances:   2545  [+498 from Testing]
+- Testing Instances:    0     [Empty]
+- Validation Instances: 577   [+68 from Testing]
+- Total Instances:      3122
+
+==============================================================================
+CLASS DISTRIBUTION BY TOOTH (FDI NOTATION)
+==============================================================================
+
+Tooth (FDI) | Training | Testing | Validation | Total | Class Balance | Change
+------------|----------|---------|------------|-------|---------------|--------
+11          |    73    |    0    |     6      |  79   | 2.53%         | ✓
+12          |    60    |    0    |     5      |  65   | 2.08%         | ✓
+13          |    72    |    0    |    14      |  86   | 2.76%         | ✓
+14          |    68    |    0    |    15      |  83   | 2.66%         | ✓
+15          |    70    |    0    |    17      |  87   | 2.79%         | ✓
+16          |    64    |    0    |    13      |  77   | 2.47%         | ✓
+17          |    63    |    0    |    12      |  75   | 2.40%         | ✓
+18          |    29    |    0    |    12      |  41   | 1.31%         | ✓✓ IMPROVED
+21          |    68    |    0    |     4      |  72   | 2.31%         | ✓
+22          |    72    |    0    |     4      |  76   | 2.43%         | ✓
+23          |    89    |    0    |    10      |  99   | 3.17%         | ✓
+24          |    85    |    0    |    13      |  98   | 3.14%         | ✓
+25          |    79    |    0    |    13      |  92   | 2.95%         | ✓
+26          |    64    |    0    |    11      |  75   | 2.40%         | ✓
+27          |    68    |    0    |    11      |  79   | 2.53%         | ✓
+28          |    35    |    0    |     8      |  43   | 1.38%         | ✓✓ IMPROVED
+31          |    37    |    0    |    23      |  60   | 1.92%         | ✓✓ IMPROVED
+32          |    39    |    0    |    29      |  68   | 2.18%         | ✓✓ IMPROVED
+33          |    55    |    0    |    31      |  86   | 2.75%         | ✓✓ IMPROVED
+34          |    77    |    0    |    20      |  97   | 3.11%         | ✓
+35          |   120    |    0    |    23      | 143   | 4.58%         | ~
+36          |   122    |    0    |    18      | 140   | 4.48%         | ~
+37          |   148    |    0    |    21      | 169   | 5.41%         | ~
+38          |   117    |    0    |    17      | 134   | 4.29%         | ~
+41          |    40    |    0    |    27      |  67   | 2.15%         | ✓✓ IMPROVED
+42          |    43    |    0    |    26      |  69   | 2.21%         | ✓✓ IMPROVED
+43          |    57    |    0    |    28      |  85   | 2.72%         | ✓✓ IMPROVED
+44          |    82    |    0    |    21      | 103   | 3.30%         | ✓
+45          |   128    |    0    |    36      | 164   | 5.25%         | ~
+46          |   147    |    0    |    27      | 174   | 5.57%         | ~
+47          |   145    |    0    |    36      | 181   | 5.80%         | ~
+48          |   128    |    0    |    26      | 154   | 4.93%         | ~
+
+==============================================================================
+CLASS IMBALANCE ANALYSIS
+==============================================================================
+
+MOST OVERREPRESENTED TEETH (>5.0%):
+  1. Tooth 47 (Lower Right 2nd Molar):    181 instances (5.80%)
+  2. Tooth 46 (Lower Right 1st Molar):    174 instances (5.57%)
+  3. Tooth 37 (Lower Left 2nd Molar):     169 instances (5.41%)
+  4. Tooth 45 (Lower Right 2nd Premolar): 164 instances (5.25%)
+
+MOST UNDERREPRESENTED TEETH (<2.0%):
+  1. Tooth 18 (Upper Right 3rd Molar):     41 instances (1.31%)
+  2. Tooth 28 (Upper Left 3rd Molar):      43 instances (1.38%)
+  3. Tooth 31 (Lower Left 1st Incisor):    60 instances (1.92%)
+
+CLASS IMBALANCE RATIO:
+  Max/Min: 181/41 = 4.41x
+  (Tooth 47 is 4.41 times more common than Tooth 18)
+
+BALANCED EXPECTATION:
+  Perfect balance per tooth: 3122 / 32 = 97.56 instances
+  Standard deviation: 35.47
+
+==============================================================================
+REDISTRIBUTION IMPACT (Testing → Training/Validation)
+==============================================================================
+
+STRATEGIC IMPROVEMENTS:
+✓✓ Underrepresented teeth prioritized for Validation set
+   - Tooth 31: +13 instances in Validation (37→60 total, 35% improvement)
+   - Tooth 32: +18 instances in Validation (39→68 total, 74% improvement)
+   - Tooth 41: +16 instances in Validation (40→67 total, 68% improvement)
+   - Tooth 42: +16 instances in Validation (43→69 total, 60% improvement)
+   - Tooth 43: +13 instances in Validation (52→85 total, 64% improvement)
+   - Tooth 33: +18 instances in Validation (52→86 total, 65% improvement)
+
+✓ Balanced distribution maintained
+   - Training: 616 images, 2545 instances (81.5%)
+   - Validation: 136 images, 577 instances (18.5%)
+   - Testing: 0 images [Ready for external dataset]
+
+✓ Validation set now better represents underrepresented classes
+   - Lower incisors (31, 32, 41, 42): significantly improved
+   - Critical for unbiased evaluation metrics
+
+==============================================================================
+RECOMMENDATIONS FOR TRAINING
+==============================================================================
+
+1. WEIGHTED LOSS FUNCTION:
+   Apply inverse frequency weighting to balance gradients:
+   - Teeth 18, 28: weight = 2.4x
+   - Teeth 31, 32, 41, 42: weight = 1.4x
+   - Teeth 45, 46, 47: weight = 0.6x
+   - Tooth 37: weight = 0.5x
+
+2. DATA AUGMENTATION:
+   Focus augmentation on underrepresented classes:
+   - Teeth 18, 28 (wisdom teeth): augment 2-3x
+   - Teeth 31, 41 (lower incisors): augment 1.5x
+
+3. SAMPLING STRATEGY:
+   Consider oversampling images containing rare teeth during training
+
+4. EVALUATION:
+   Report per-class metrics (precision, recall, F1) to identify biases
+   Pay special attention to performance on teeth 18, 28, 31
+
+==============================================================================
