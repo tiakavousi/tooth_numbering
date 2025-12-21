@@ -82,3 +82,5 @@ logs/
 *.tmp
 *.bak
 *.backupdataset.zip
+*.zip
+RoboFlowDataSets/
